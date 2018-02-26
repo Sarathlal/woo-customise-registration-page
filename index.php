@@ -89,7 +89,7 @@ class WooRegisterCustomize {
                             <?php
                             //More to test later...
                         } else {
-
+                            
                         }
                     }
                     ?>
@@ -134,7 +134,7 @@ class WooRegisterCustomize {
                 </p>
                 <?php
             } else {
-
+                
             }
         }
     }
@@ -205,7 +205,7 @@ class WooRegisterCustomize {
                     </p>
                     <?php
                 } else {
-
+                    
                 }
             }
             ?>
