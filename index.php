@@ -67,6 +67,7 @@ class WooRegisterCustomize {
                     $saved_data = get_option('woo_reg_customizer');
                     //Decode JSON string as an array
                     $saved_data = json_decode($saved_data, true);
+                    if (is_array($saved_data) and !empty($saved_data)) {
                     foreach ($saved_data as $element) {
                         //If item is text box
                         if ($element["item"] == "text") {
@@ -92,6 +93,7 @@ class WooRegisterCustomize {
                             
                         }
                     }
+					}
                     ?>
                 </ul>
             </form>
@@ -107,6 +109,7 @@ class WooRegisterCustomize {
     function render_extra_register_fields() {
         $saved_data = get_option('woo_reg_customizer');
         $saved_data = json_decode($saved_data, true);
+        if (is_array($saved_data) and !empty($saved_data)) {
         foreach ($saved_data as $element) {
             if ($element["item"] == "text") {
                 $name = preg_replace('/\s+/', '_', $element["label"]);
@@ -137,11 +140,13 @@ class WooRegisterCustomize {
                 
             }
         }
+		}
     }
 
     function save_extra_register_fields($customer_id) {
         $saved_data = get_option('woo_reg_customizer');
         $saved_data = json_decode($saved_data, true);
+        if (is_array($saved_data) and !empty($saved_data)) {
         foreach ($saved_data as $element) {
             $name = preg_replace('/\s+/', '_', $element["label"]);
             $name = strtolower($name);
@@ -149,6 +154,7 @@ class WooRegisterCustomize {
                 update_user_meta($customer_id, $name, sanitize_text_field($_POST[$name]));
             }
         }
+		}
     }
 
     function create_new_menu_link($menu_links) {
@@ -174,6 +180,7 @@ class WooRegisterCustomize {
             <?php
             $saved_data = get_option('woo_reg_customizer');
             $saved_data = json_decode($saved_data, true);
+            if (is_array($saved_data) and !empty($saved_data)) {
             foreach ($saved_data as $element) {
                 if ($element["item"] == "text") {
                     $name = preg_replace('/\s+/', '_', $element["label"]);
@@ -208,6 +215,7 @@ class WooRegisterCustomize {
                     
                 }
             }
+			}
             ?>
             <input type='submit' value='Submit'/>
         </form>
@@ -223,6 +231,7 @@ class WooRegisterCustomize {
 
                 $saved_data = get_option('woo_reg_customizer');
                 $saved_data = json_decode($saved_data, true);
+                if (is_array($saved_data) and !empty($saved_data)) {
                 foreach ($saved_data as $element) {
                     $name = preg_replace('/\s+/', '_', $element["label"]);
                     $name = strtolower($name);
@@ -230,6 +239,7 @@ class WooRegisterCustomize {
                         update_user_meta($customer_id, $name, sanitize_text_field($_POST[$name]));
                     }
                 }
+				}
             }
         }
     }
