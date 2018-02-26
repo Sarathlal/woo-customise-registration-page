@@ -1,0 +1,27 @@
+.create-widget {border-bottom:1px solid #000;}
+
+ul#elements li { margin-bottom: 0; padding: 0.5rem 1rem;background: #dcdcdc;position:relative; cursor: move; }
+ul#elements li:nth-child(odd) { background: #cacaca; }
+
+ul#elements label {
+    cursor: pointer;
+    display: inline-block;
+    width: 44px;
+}
+ul#elements li a.remove {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: #fff;
+    background-color: #656565;
+    border: 1px solid #656565;
+    padding: 0.5rem 0.5rem;
+    line-height: 0.6rem;
+    border-radius: 50%;
+    /* font-size: 1rem; */
+    cursor: pointer;
+}
+ul#elements li:hover a.remove {
+    background-color: red;
+    border: 1px solid red;  
+}
