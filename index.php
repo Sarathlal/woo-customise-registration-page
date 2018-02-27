@@ -57,6 +57,7 @@ class WooRegisterCustomize {
                         <select id="new-input-type">
                             <option value="text">Text</option>
                             <option value="select">Select</option>
+                            <option value="radio">Radio</option>
                         </select>
                         <button id="add-new">Create New Field</button>
                     </p>
@@ -88,6 +89,16 @@ class WooRegisterCustomize {
                                 <span><a title="Remove This Element" class="remove">X</a></span>
                             </li>
                             <?php
+                            //If item is radio
+                        } elseif ($element["item"] == "radio") {
+                            ?>
+                            <li data-item="radio" data-label="" data-values="">
+                                <h4 class="title">Radio Buttons</h4>
+                                <p><label for="">Label</label> <input type="text" name="label" value="<?php echo $element["label"]; ?>"  required/></p>
+                                <p><label for="">Values</label> <input type="text" name="values" value="<?php echo $element["values"]; ?>" required/></p>
+                                <span><a title="Remove This Element" class="remove">X</a></span>
+                            </li>                           
+                            <?php
                             //More to test later...
                         } else {
                             
@@ -109,6 +120,7 @@ class WooRegisterCustomize {
     function render_extra_register_fields() {
         $saved_data = get_option('woo_reg_customizer');
         $saved_data = json_decode($saved_data, true);
+        //var_dump($saved_data);
         if (is_array($saved_data) and !empty($saved_data)) {
         foreach ($saved_data as $element) {
             if ($element["item"] == "text") {
@@ -135,6 +147,19 @@ class WooRegisterCustomize {
                         <?php } ?>
                     </select>
                 </p>
+				<?php
+            } elseif ($element["item"] == "radio") {
+                $options = explode(',', $element["values"]);
+                $options = array_map('trim', $options);
+                $name = preg_replace('/\s+/', '_', $element["label"]);
+                $name = strtolower($name);
+                ?>
+                <p class="form-row form-row-wide">
+                    <label for=""><?php echo $element["label"]; ?></label>
+                    <?php foreach ($options as $option) { ?>
+						<input type="radio" value="<?php echo $option; ?>" name="<?php echo $name; ?>"/> <?php echo $option; ?>
+                    <?php } ?>
+                </p>                
                 <?php
             } else {
                 
@@ -210,6 +235,23 @@ class WooRegisterCustomize {
                             <?php } ?>
                         </select>
                     </p>
+                    <?php
+                } elseif ($element["item"] == "radio") {
+                    $options = explode(',', $element["values"]);
+                    $options = array_map('trim', $options);
+                    $name = preg_replace('/\s+/', '_', $element["label"]);
+                    $name = strtolower($name);
+                    $user_meta_data = get_user_meta($user_id, $name, true);
+                    ?>
+                    <p class="form-row form-row-wide">
+                        <label for=""><?php echo $element["label"]; ?></label>
+                        <?php
+                        foreach ($options as $option) {
+							$selected = $user_meta_data == $option ? "checked" : "";
+							?>
+                            <input type="radio" value="<?php echo $option; ?>" name="<?php echo $name; ?>" <?php echo $selected; ?> ><?php echo $option; ?></option>
+                        <?php } ?>
+                    </p>                    
                     <?php
                 } else {
                     

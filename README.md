@@ -17,6 +17,11 @@ This is a simple plugin to customize registration page in WooCommerce. It allow 
 10. Use drag & drop to reorder  position. Same position will be available in front end.
 11. Users can manage this new fields from `Account Dashboard` >> `Additional Info` page.
 
+## Changelog
+
+1.0 First release (Text filed & Select box only)
+1.1 Add Radio Button
+
 ## Future Plan
 
 1. Add more fields

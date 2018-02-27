@@ -26,7 +26,6 @@ jQuery(document).ready(function ($) {
             new_element += '<p><label>Label </label><input type="text" name="label" value="" required/></p>';
             //new_element += '<span><a title="Remove This Element" class="remove">X</a></span>';
             new_element += '</li>';
-            $("ul#elements").append(new_element).show('slow');
         } else if (input_type == "select") {
             var new_element = '<li data-item="select" data-label="" data-values="">';
             new_element += '<h4>' + input_type + ' Field</h4>';
@@ -34,9 +33,16 @@ jQuery(document).ready(function ($) {
             new_element += '<p><label>Values </label><input type="text" name="values" value="" required/></p>';
             //new_element += '<span><a title="Remove This Element" class="remove">X</a></span>';
             new_element += '</li>';
-            $("ul#elements").append(new_element).show('slow');
+        } else if (input_type == "radio") {
+            var new_element = '<li data-item="radio" data-label="" data-values="">';
+            new_element += '<h4>' + input_type + ' Buttons</h4>';
+            new_element += '<p><label>Label </label><input type="text" name="label" value="" required/></p>';
+            new_element += '<p><label>Values </label><input type="text" name="values" value="" required/></p>';
+            //new_element += '<span><a title="Remove This Element" class="remove">X</a></span>';
+            new_element += '</li>';
         } else {
         }
+        $("ul#elements").append(new_element).show('slow');
     });
 
     $('#submit-data input#submit').click(function (e) {
