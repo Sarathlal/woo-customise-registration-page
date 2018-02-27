@@ -19,8 +19,8 @@ This is a simple plugin to customize registration page in WooCommerce. It allow 
 
 ## Changelog
 
-1.0 First release (Text filed & Select box only)
-1.1 Add Radio Button
+1. 1.0 First release (Text filed & Select box only)
+2. 1.1 Add Radio Button
 
 ## Future Plan
 
